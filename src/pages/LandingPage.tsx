@@ -39,7 +39,6 @@ function Navbar() {
         </a>
         <button className="cursor-pointer rounded-2xl bg-gray-900 text-white px-5 py-2.5 text-m font-medium hover:-translate-y-0.5 transition-transform duration-200 ease-in-out inline-block group">
           Get started <ChevronRight className="h-4 w-4 inline-flex -translate-y-0.5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" aria-hidden="true" />
->>>>>>> 9b6920e4f6d5bec5a52d113f3fd55cc24783f7d5
         </button>
       </div>
     </header>
@@ -65,16 +64,9 @@ function Hero() {
           Unlock your potential and take the next step.
         </p>
 
-<<<<<<< HEAD
-        <div className="w-fit bg-linear-to-r from-[#688DE0] to-[#D2608C] p-1 rounded-2xl">
-          <button className="cursor-pointer rounded-2xl bg-gray-900 text-white px-5 py-2.5 text-base font-medium hover:-translate-y-px transition-transform duration-200 ease-in-out">
-            Get started for free<ChevronRight className="h-4 w-4 inline-flex -translate-y-0.5" aria-hidden="true" />
-=======
-        <div className="w-55 mt-6 bg-linear-to-r from-[#688DE0] to-[#D2608C] p-1 rounded-2xl inline-block">
-          <button className="cursor-pointer w-full rounded-2xl bg-gray-900 text-white px-5 py-2.5 text-m font-medium 
-                              hover:-translate-y-px transition-transform duration-200 ease-in-out inline-block group">
-          Get started for free <ChevronRight className="h-4 w-4 inline-flex -translate-y-0.5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" aria-hidden="true" />
->>>>>>> 9b6920e4f6d5bec5a52d113f3fd55cc24783f7d5
+        <div className="w-51 mt-6 bg-linear-to-r from-[#688DE0] to-[#D2608C] p-1 rounded-2xl">
+          <button className="cursor-pointer rounded-2xl bg-gray-900 text-white px-5 py-2.5 text-m font-medium hover:-translate-y-px transition-transform duration-200 ease-in-out">
+          Get started for free<ChevronRight className="h-4 w-4 inline-flex -translate-y-0.5" aria-hidden="true" />
           </button>
         </div>
       </div>
