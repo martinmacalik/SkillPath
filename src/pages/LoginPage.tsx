@@ -78,7 +78,7 @@ function RightPanel() {
         {/* Row 1: first + last name */}
         <div className="grid grid-cols-2 gap-4">
           <Field label="First Name">
-            <Input placeholder="John" />
+            <Input placeholder="First Name" />
           </Field>
 
           <Field label="Last Name">
