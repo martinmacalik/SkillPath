@@ -28,7 +28,7 @@ function Navbar() {
 
       {/* Right: actions */}
       <div className="flex items-center gap-3 md:gap-6">
-        <Link to="/login" className="text-sm md:text-base text-black font-medium hover:text-gray-500 transition-colors duration-200 ease-in-out">Sign In</Link>
+        <Link to="/signin" className="text-sm md:text-base text-black font-medium hover:text-gray-500 transition-colors duration-200 ease-in-out">Sign In</Link>
         <button className="cursor-pointer rounded-2xl bg-gray-900 text-white px-5 py-2.5 text-m font-medium hover:-translate-y-0.5 transition-transform duration-200 ease-in-out inline-block group">
           Get started <ChevronRight className="h-4 w-4 inline-flex -translate-y-0.5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" aria-hidden="true" />
         </button>

@@ -1,13 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
 
 import LandingPage from '@/pages/LandingPage.tsx'
-import SignIn from './pages/LoginPage'
+import SignInPage from './pages/SignInPage'
+import AuthCallback from './pages/AuthCallback.tsx'
+import ProfilePage from './pages/ProfilePage'
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<SignIn />} />
+      <Route path="/signin" element={<SignInPage />} />
+      <Route path="/auth/callback" element={<AuthCallback />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route
         path="*"
         element={

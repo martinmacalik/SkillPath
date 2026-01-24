@@ -15,6 +15,7 @@
     "@fontsource/literata": "^5.2.8",
     "@fontsource/montserrat": "^5.2.8",
     "@react-three/fiber": "^9.5.0",
+    "@supabase/supabase-js": "^2.91.1",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
