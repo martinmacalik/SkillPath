@@ -7,11 +7,11 @@ import { useState, useEffect, useRef } from "react";
 export default function SignUp() {
   return (
     // Page background and centering
-    <div className="min-h-screen bg-white flex items-center justify-center p-6">
+    <div className="min-h-screen bg-white flex items-center justify-center p-3 sm:p-6">
       {/* Card wrapper with taller aspect ratio */}
-      <div className="w-full max-w-6xl aspect-3/2 rounded-[55px] bg-white overflow-hidden">
+      <div className="w-full max-w-6xl aspect-auto md:aspect-3/2 rounded-[35px] sm:rounded-[55px] bg-white overflow-hidden">
         {/* Split layout */}
-        <div className="h-full w-full flex gap-7">
+        <div className="h-full w-full flex flex-col md:flex-row gap-0 md:gap-7">
           <LeftPanel />
           <RightPanel />
         </div>
@@ -23,9 +23,9 @@ export default function SignUp() {
 function LeftPanel() {
   return (
     // Left side with ShaderGradient background
-    <div className="relative w-1/2 rounded-[55px] overflow-hidden">
+    <div className="relative w-full md:w-1/2 h-48 md:h-auto rounded-t-[35px] sm:rounded-t-[55px] md:rounded-[55px] overflow-hidden">
       {/* ShaderGradient background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 scale-150 md:scale-100">
         <ShaderGradientCanvas
           style={{
             position: 'absolute',
@@ -307,12 +307,12 @@ function RightPanel() {
   };
 
   return (
-    <div className="w-1/2 p-10 flex flex-col justify-center">
+    <div className="w-full md:w-1/2 p-6 sm:p-10 flex flex-col justify-center">
       {/* Back arrow */}
       <button
         type="button"
         onClick={() => navigate(-1)}
-        className="w-10 h-10 inline-flex items-center cursor-pointer justify-center rounded-full hover:bg-gray-100 transition-colors shrink-0 mb-8"
+        className="w-10 h-10 inline-flex items-center cursor-pointer justify-center rounded-full hover:bg-gray-100 transition-colors shrink-0 mb-6 sm:mb-8"
         aria-label="Go back"
       >
         <ArrowLeft className="h-5 w-5 text-black" />
@@ -320,11 +320,11 @@ function RightPanel() {
 
       {/* Title + subtitle */}
       <div>
-        <h1 className="text-5xl font-medium tracking-tight text-gray-900">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-gray-900">
           {isLogin ? "Welcome Back" : "Create an Account"}
         </h1>
 
-        <p className="mt-4 text-sm text-gray-600">
+        <p className="mt-3 sm:mt-4 text-sm text-gray-600">
           {isLogin ? "Don't have an account? " : "Already have an account? "}
           <button
             type="button"
@@ -347,7 +347,7 @@ function RightPanel() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+      <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 space-y-4 sm:space-y-5">
         {/* Success/Error Message */}
         {message && (
           <div
