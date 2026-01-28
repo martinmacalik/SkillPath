@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { ShaderGradientCanvas, ShaderGradient } from "@shadergradient/react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function SignUp() {
   return (
@@ -101,6 +101,18 @@ function RightPanel() {
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [showResendButton, setShowResendButton] = useState(false);
   const [resendEmail, setResendEmail] = useState("");
+  const [isPolling, setIsPolling] = useState(false);
+  const pollIntervalRef = useRef<number | null>(null);
+  const pendingCredentialsRef = useRef<{ email: string; password: string } | null>(null);
+
+  // Clean up polling on unmount
+  useEffect(() => {
+    return () => {
+      if (pollIntervalRef.current) {
+        clearInterval(pollIntervalRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -108,6 +120,36 @@ function RightPanel() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+  };
+
+  const startVerificationPolling = (email: string, password: string) => {
+    // Store credentials for polling
+    pendingCredentialsRef.current = { email, password };
+    setIsPolling(true);
+
+    // Poll every 3 seconds
+    pollIntervalRef.current = setInterval(async () => {
+      if (!pendingCredentialsRef.current) return;
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: pendingCredentialsRef.current.email,
+        password: pendingCredentialsRef.current.password,
+      });
+
+      if (!error && data.session) {
+        console.log("✅ Email verified! Auto-signing in...");
+        
+        // Clean up
+        if (pollIntervalRef.current) {
+          clearInterval(pollIntervalRef.current);
+        }
+        pendingCredentialsRef.current = null;
+        setIsPolling(false);
+
+        // Redirect to profile
+        navigate("/profile", { replace: true });
+      }
+    }, 3000); // Poll every 3 seconds
   };
 
   const handleResendEmail = async () => {
@@ -230,21 +272,24 @@ function RightPanel() {
               text: "Account already verified! You can log in.",
             });
           } else {
-            // Normal first-time signup
+            // Normal first-time signup - start polling for verification
             setMessage({
               type: "success",
               text: "Check your email for the confirmation link!",
             });
+            
+            // Start polling to detect verification
+            startVerificationPolling(formData.email, formData.password);
           }
           
-          // Clear form
-          setFormData({
+          // Clear form except password (needed for polling)
+          setFormData((prev) => ({
             firstName: "",
             lastName: "",
             email: "",
-            password: "",
+            password: prev.password, // Keep password for polling
             agreeToTerms: false,
-          });
+          }));
         } else {
           // User object is null - might be obfuscated response for existing user
           setMessage({ 

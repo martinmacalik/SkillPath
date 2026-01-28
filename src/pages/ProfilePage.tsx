@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
-import type { User } from "@supabase/supabase-js";
+import { useAuth } from "../contexts/AuthProvider";
 
 interface Profile {
   id: string;
@@ -15,23 +15,15 @@ interface Profile {
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
+  const { session } = useAuth();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is authenticated and fetch profile
-    const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        navigate("/signin");
-        return;
-      }
-      
-      setUser(session.user);
+    // Fetch profile from database
+    const fetchProfile = async () => {
+      if (!session?.user) return;
 
-      // Fetch profile from database
       const { data: profileData, error } = await supabase
         .from("profiles")
         .select("*")
@@ -47,19 +39,8 @@ export default function ProfilePage() {
       setLoading(false);
     };
 
-    checkUser();
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        navigate("/signin");
-      } else {
-        setUser(session.user);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
+    fetchProfile();
+  }, [session]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -108,7 +89,7 @@ export default function ProfilePage() {
           </h2>
 
           <div className="space-y-4">
-            <InfoRow label="Email" value={user?.email || "N/A"} />
+            <InfoRow label="Email" value={session?.user?.email || "N/A"} />
             
             {profile?.first_name && (
               <InfoRow 
@@ -146,7 +127,7 @@ export default function ProfilePage() {
 
             <InfoRow 
               label="User ID" 
-              value={user?.id || "N/A"} 
+              value={session?.user?.id || "N/A"} 
             />
 
             <InfoRow 

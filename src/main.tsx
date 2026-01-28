@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
+import { AuthProvider } from './contexts/AuthProvider'
 
 // Fonts
 import "@fontsource/montserrat/500.css"; // Montserrat Medium
@@ -15,7 +16,9 @@ import "@fontsource/literata/400.css";   // optional normal
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )

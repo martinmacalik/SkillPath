@@ -1,9 +1,25 @@
 import { ChevronRight } from 'lucide-react';
 import AppScreen from '../assets/AppScreen.png';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useAuth } from '../contexts/AuthProvider';
 
 
 export default function LandingPage() {
+  const { session, loading } = useAuth();
+
+  // If logged in, redirect to profile
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
+
+  if (session) {
+    return <Navigate to="/profile" replace />;
+  }
+
   return (
     // relative: allows absolute-positioned children to be placed relative to this page
     // overflow-hidden: hides parts of the blobs that go outside the screen
