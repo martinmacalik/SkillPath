@@ -101,7 +101,7 @@ function RightPanel() {
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [showResendButton, setShowResendButton] = useState(false);
   const [resendEmail, setResendEmail] = useState("");
-  const [isPolling, setIsPolling] = useState(false);
+
   const pollIntervalRef = useRef<number | null>(null);
   const pendingCredentialsRef = useRef<{ email: string; password: string } | null>(null);
 
@@ -125,7 +125,6 @@ function RightPanel() {
   const startVerificationPolling = (email: string, password: string) => {
     // Store credentials for polling
     pendingCredentialsRef.current = { email, password };
-    setIsPolling(true);
 
     // Poll every 3 seconds
     pollIntervalRef.current = setInterval(async () => {
@@ -144,7 +143,6 @@ function RightPanel() {
           clearInterval(pollIntervalRef.current);
         }
         pendingCredentialsRef.current = null;
-        setIsPolling(false);
 
         // Redirect to profile
         navigate("/profile", { replace: true });
