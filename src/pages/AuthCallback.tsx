@@ -17,7 +17,7 @@ export default function AuthCallback() {
       }
 
       if (data.session) {
-        navigate("/profile", { replace: true });
+        navigate("/dashboard", { replace: true });
       } else {
         navigate("/signin", { replace: true });
       }

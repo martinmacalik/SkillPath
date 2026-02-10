@@ -5,6 +5,12 @@ import SignInPage from './pages/SignInPage'
 import AuthCallback from './pages/AuthCallback.tsx'
 import ProfilePage from './pages/ProfilePage'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import { DashboardLayout } from './components/layout/DashboardLayout'
+import DashboardPage from './pages/DashboardPage'
+import ChatsPage from './pages/ChatsPage'
+import SkillsPage from './pages/SkillsPage'
+import LearnPage from './pages/LearnPage'
+import DiscoverPage from './pages/DiscoverPage'
 
 export default function App() {
   return (
@@ -12,6 +18,20 @@ export default function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/signin" element={<SignInPage />} />
       <Route path="/auth/callback" element={<AuthCallback />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<DashboardPage />} />
+        <Route path="chats" element={<ChatsPage />} />
+        <Route path="skills" element={<SkillsPage />} />
+        <Route path="learn" element={<LearnPage />} />
+        <Route path="discover" element={<DiscoverPage />} />
+      </Route>
       <Route
         path="/profile"
         element={

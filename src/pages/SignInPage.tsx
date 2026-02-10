@@ -72,6 +72,34 @@ function LeftPanel() {
         </ShaderGradientCanvas>
       </div>
 
+      {/* Grainient background
+      <div className="absolute inset-0 scale-150 md:scale-100">
+        <Grainient
+          color1="#c7335f"
+          color2="#6f53df"
+          color3="#ac36e2"
+          timeSpeed={0.25}
+          colorBalance={0}
+          warpStrength={2.3}
+          warpFrequency={5}
+          warpSpeed={6}
+          warpAmplitude={50}
+          blendAngle={0}
+          blendSoftness={0.05}
+          rotationAmount={0}
+          noiseScale={2}
+          grainAmount={0.12}
+          grainScale={2}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1}
+          saturation={1}
+          centerX={0}
+          centerY={0}
+          zoom={0.9}
+        />
+      </div> */}
+
       {/* Logo top-left */}
       <div className="absolute top-10 left-10 text-white text-3xl font-bold z-10">
         SC
@@ -144,8 +172,8 @@ function RightPanel() {
         }
         pendingCredentialsRef.current = null;
 
-        // Redirect to profile
-        navigate("/profile", { replace: true });
+        // Redirect to dashboard
+        navigate("/dashboard", { replace: true });
       }
     }, 3000); // Poll every 3 seconds
   };
@@ -207,7 +235,7 @@ function RightPanel() {
             type: "success",
             text: "Logged in successfully! Redirecting...",
           });
-          setTimeout(() => navigate("/profile"), 1000);
+          setTimeout(() => navigate("/dashboard"), 1000);
         }
       } catch (err) {
         setMessage({ type: "error", text: "An unexpected error occurred" });
@@ -311,7 +339,7 @@ function RightPanel() {
       {/* Back arrow */}
       <button
         type="button"
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/")}
         className="w-10 h-10 inline-flex items-center cursor-pointer justify-center rounded-full hover:bg-gray-100 transition-colors shrink-0 mb-6 sm:mb-8"
         aria-label="Go back"
       >

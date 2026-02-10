@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthProvider';
 export default function LandingPage() {
   const { session, loading } = useAuth();
 
-  // If logged in, redirect to profile
+  // If logged in, redirect to dashboard
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -17,7 +17,7 @@ export default function LandingPage() {
   }
 
   if (session) {
-    return <Navigate to="/profile" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return (
