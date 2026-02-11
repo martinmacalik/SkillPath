@@ -6,11 +6,14 @@ import App from './App.tsx'
 import { AuthProvider } from './contexts/AuthProvider'
 
 // Fonts
-import "@fontsource/montserrat/500.css"; // Montserrat Medium
-import "@fontsource/montserrat/400.css"; // optional normal
+import "@fontsource/montserrat/400.css";
+import "@fontsource/montserrat/500.css";
+import "@fontsource/montserrat/600.css";
+import "@fontsource/montserrat/700.css";
+import "@fontsource/montserrat/800.css";
 
-import "@fontsource/literata/500.css";   // Literata Medium
-import "@fontsource/literata/400.css";   // optional normal
+import "@fontsource/literata/500.css";
+import "@fontsource/literata/400.css";
 
 
 createRoot(document.getElementById('root')!).render(

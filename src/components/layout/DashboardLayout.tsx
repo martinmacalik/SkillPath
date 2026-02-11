@@ -5,11 +5,11 @@ import { TopBar } from './TopBar'
 
 export function DashboardLayout() {
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50 text-gray-900">
+    <div className="flex h-screen gap-4 overflow-hidden bg-white p-4 text-gray-900">
       <Sidebar />
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col gap-4 overflow-hidden">
         <TopBar />
-        <main className="flex-1 overflow-y-auto p-7">
+        <main className="flex flex-1 flex-col overflow-hidden rounded-2xl bg-gray-100 p-7">
           <Outlet />
         </main>
       </div>

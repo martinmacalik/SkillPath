@@ -14,14 +14,14 @@ export function TopBar() {
   const placeholder = searchPlaceholders[location.pathname] || 'Search'
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-6">
+    <header className="flex h-21 shrink-0 items-center justify-between rounded-2xl bg-gray-100 px-6">
       {/* Search */}
       <div className="relative w-96">
         <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         <input
           type="text"
           placeholder={placeholder}
-          className="w-full rounded-xl border border-gray-200 bg-gray-50/80 py-3 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-100"
+          className="w-full rounded-4xl bg-white py-3 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10"
         />
       </div>
 

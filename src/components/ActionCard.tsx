@@ -20,7 +20,7 @@ export function ActionCard({
   badgeVariant,
 }: ActionCardProps) {
   return (
-    <Card className="group hover:border-zinc-700/80">
+    <Card className="group">
       <CardContent className="p-5">
         <div className="flex items-start gap-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-800/60">

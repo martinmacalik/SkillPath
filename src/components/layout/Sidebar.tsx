@@ -27,7 +27,7 @@ const generalItems = [
 
 export function Sidebar() {
   return (
-    <aside className="flex w-[230px] shrink-0 flex-col border-r border-gray-200 bg-white">
+    <aside className="flex w-[230px] shrink-0 flex-col rounded-2xl bg-gray-100">
       {/* Logo */}
       <div className="px-6 pb-5 pt-7">
         <h1 className="text-2xl font-bold tracking-tight text-gray-900">Skillcatch</h1>
@@ -86,7 +86,7 @@ export function Sidebar() {
 
       {/* Download App CTA */}
       <div className="p-4">
-        <div className="overflow-hidden rounded-2xl bg-linear-to-br from-purple-800 via-purple-700 to-purple-900 p-5 text-white">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-900 to-fuchsia-700 p-5 text-white">
           <p className="text-sm font-bold leading-tight">Download Our Mobile App</p>
           <p className="mt-1.5 text-[11px] leading-snug text-purple-200">
             Get easy in another way

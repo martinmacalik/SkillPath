@@ -27,7 +27,7 @@ const stripePattern =
 
 export default function DashboardPage() {
   return (
-    <div className="flex h-[calc(100vh-4rem-3.5rem)] flex-col gap-5">
+    <div className="flex min-h-0 flex-1 flex-col gap-5">
       {/* ── Header ── */}
       <div className="flex shrink-0 items-start justify-between">
         <div>
@@ -41,7 +41,7 @@ export default function DashboardPage() {
             <Plus className="h-4 w-4" />
             Add project
           </button>
-          <button className="rounded-xl border border-purple-700 px-6 py-3 text-sm font-semibold text-purple-700 transition-colors hover:bg-purple-50">
+          <button className="rounded-xl bg-purple-50 px-6 py-3 text-sm font-semibold text-purple-700 transition-colors hover:bg-purple-100">
             Import Data
           </button>
         </div>
@@ -50,29 +50,24 @@ export default function DashboardPage() {
       {/* ── Stats Row ── */}
       <div className="grid shrink-0 grid-cols-4 gap-5" style={{ height: 'clamp(120px, calc((100% - 4rem) * 0.25), 180px)' }}>
         {/* Total Skills – accent card */}
-        <div className="flex h-full flex-col justify-between rounded-2xl bg-linear-to-br from-purple-700 via-purple-600 to-fuchsia-500 p-6 text-white shadow-lg shadow-purple-200/40">
+        <div className="flex h-full flex-col justify-between rounded-2xl bg-gradient-to-br from-indigo-900 to-fuchsia-700 p-6 text-white">
           <div className="flex items-start justify-between">
-            <p className="text-sm font-medium text-purple-100">Total Skills</p>
+            <p className="text-m font-medium text-purple-100">Total Skills</p>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
               <ArrowUpRight className="h-5 w-5" />
             </span>
           </div>
-          <p className="text-7xl font-bold leading-none">56</p>
-          <div className="flex items-center gap-2">
-            <span className="rounded-full bg-green-400/20 px-2.5 py-1 text-xs font-bold text-green-200">
+          <div className="flex items-end gap-2">
+            <p className="text-6xl font-medium leading-none">56</p>
+            <span className="mb-1 rounded-md border-1 border-solid border-pink-300 px-1.5 py-0.5 text-xs font-medium text-pink-300">
               6+
             </span>
-            <span className="text-xs text-purple-200">Increased from last month</span>
           </div>
+          <p className="text-m text-purple-200">Skills Learned</p>
         </div>
 
         <StatCard title="Day Streak" value="14" badge="2+" badgeLabel="Increased from last month" />
-        <StatCard
-          title="Skills Learning"
-          value="4"
-          badge="0+"
-          badgeLabel="Increased from last month"
-        />
+        <StatCard title="Skills Learning" value="4" badge="0+" badgeLabel="Increased from last month" />
         <StatCard title="New Chats" value="13" badge="3+" badgeLabel="From Peter" />
       </div>
 
@@ -82,7 +77,7 @@ export default function DashboardPage() {
         style={{ gridTemplateRows: '4fr 1fr 1fr 4fr' }}
       >
         {/* Learning Progress: rows 1-2, cols 1-3 */}
-        <div className="col-span-3 col-start-1 row-start-1 flex flex-col rounded-2xl border border-gray-200 bg-white p-6" style={{ gridRow: '1 / 3' }}>
+        <div className="col-span-3 col-start-1 row-start-1 flex flex-col rounded-2xl bg-white p-6" style={{ gridRow: '1 / 3' }}>
           <h3 className="text-base font-semibold text-gray-900">Learning Progress</h3>
           <div className="flex flex-1 items-end justify-around gap-3 px-2 pb-4">
             {progressData.map((bar, i) => (
@@ -102,7 +97,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Reminders: rows 1-2, cols 4-5 */}
-        <div className="col-span-2 col-start-4 flex flex-col rounded-2xl border border-gray-200 bg-white p-6" style={{ gridRow: '1 / 3' }}>
+        <div className="col-span-2 col-start-4 flex flex-col rounded-2xl bg-white p-6" style={{ gridRow: '1 / 3' }}>
           <h3 className="text-base font-semibold text-gray-900">Reminders</h3>
           <div className="flex flex-1 items-center justify-center">
             <p className="text-sm text-gray-400">No reminders yet</p>
@@ -110,7 +105,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Skills Learning: rows 1-3, col 6 (extends 1 sub-row past Reminders) */}
-        <div className="col-span-1 col-start-6 flex flex-col rounded-2xl border border-gray-200 bg-white p-6" style={{ gridRow: '1 / 4' }}>
+        <div className="col-span-1 col-start-6 flex flex-col rounded-2xl bg-white p-6" style={{ gridRow: '1 / 4' }}>
           <h3 className="text-base font-semibold text-gray-900">Skills Learning</h3>
           <div className="flex flex-1 items-center justify-center">
             <p className="text-sm text-gray-400">No active skills</p>
@@ -118,10 +113,10 @@ export default function DashboardPage() {
         </div>
 
         {/* Chats: rows 3-4, cols 1-2 (narrower than Learning Progress) */}
-        <div className="col-span-2 col-start-1 flex flex-col rounded-2xl border border-gray-200 bg-white p-6" style={{ gridRow: '3 / 5' }}>
+        <div className="col-span-2 col-start-1 flex flex-col rounded-2xl bg-white p-6" style={{ gridRow: '3 / 5' }}>
           <div className="flex shrink-0 items-center justify-between">
             <h3 className="text-base font-semibold text-gray-900">Chats</h3>
-            <button className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-500 transition-colors hover:bg-gray-50">
+            <button className="rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-500 transition-colors hover:bg-gray-200">
               Edit
             </button>
           </div>
@@ -153,7 +148,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Pinned Skill: rows 3-4, cols 3-5 (extends left to fill gap) */}
-        <div className="col-span-3 col-start-3 flex flex-col rounded-2xl border border-gray-200 bg-white p-6" style={{ gridRow: '3 / 5' }}>
+        <div className="col-span-3 col-start-3 flex flex-col rounded-2xl bg-white p-6" style={{ gridRow: '3 / 5' }}>
           <h3 className="text-base font-semibold text-gray-900">Pinned Skill</h3>
           <div className="flex flex-1 items-center justify-center">
             <p className="text-sm text-gray-400">No pinned skill</p>
@@ -161,7 +156,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Time Tracker: row 4 only, col 6 (bottom aligns with Chats/Pinned Skill) */}
-        <div className="col-span-1 col-start-6 flex flex-col justify-end rounded-2xl bg-linear-to-br from-purple-800 via-indigo-800 to-purple-900 p-6 shadow-lg shadow-purple-200/30" style={{ gridRow: '4 / 5' }}>
+        <div className="col-span-1 col-start-6 flex flex-col justify-end rounded-2xl bg-gradient-to-br from-indigo-900 to-fuchsia-700 p-6" style={{ gridRow: '4 / 5' }}>
           <p className="text-2xl font-bold text-white">Time Tracker</p>
         </div>
       </div>
@@ -183,20 +178,20 @@ function StatCard({
   badgeLabel: string
 }) {
   return (
-    <div className="flex h-full flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <div className="flex h-full flex-col justify-between rounded-2xl bg-white p-6">
       <div className="flex items-start justify-between">
-        <p className="text-sm font-medium text-gray-500">{title}</p>
-        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200">
+        <p className="text-m font-medium text-gray-500">{title}</p>
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
           <ArrowUpRight className="h-5 w-5 text-gray-400" />
         </span>
       </div>
-      <p className="text-6xl font-bold text-gray-900">{value}</p>
-      <div className="flex items-center gap-2">
-        <span className="rounded-full bg-purple-100 px-2.5 py-1 text-xs font-bold text-purple-600">
+      <div className="flex items-end gap-2">
+        <p className="text-6xl font-medium text-gray-900">{value}</p>
+        <span className="mb-1 rounded-md border-1 border-solid border-purple-400 px-1.5 py-0.5 text-xs font-medium text-purple-500">
           {badge}
         </span>
-        <span className="text-xs text-gray-400">{badgeLabel}</span>
       </div>
+      <p className="text-m text-gray-400">{badgeLabel}</p>
     </div>
   )
 }
